@@ -21,6 +21,10 @@
         h2 {
             color: #007bff;
         }
+
+        body {
+            background-color: #6984a052;
+        }
     </style>
 </head>
 
@@ -28,7 +32,7 @@
     <div class="d-flex justify-content-center align-items-center">
         <fieldset id="fieldset" class="mt-2 mb-2">
             <div>
-                <h2>Student Information</h2>
+                <h2>Update Student Information</h2>
                 <hr style="color: blue;">
                 <div class="mb-3">
                     <label for="studentName">Student Name:</label>
@@ -42,7 +46,7 @@
                     <label for="studentContact">Student Contact:</label>
                     <input class="form-control" type="number" id="studentContact" name="studentContact" required>
                 </div>
-                <h2>Guardian Information</h2>
+                <h2>Update Guardian Information</h2>
                 <hr style="color: blue;">
                 <div class="mb-3">
                     <label for="guardianName">Guardian Name:</label>
@@ -58,7 +62,8 @@
                 </div>
                 <div class="d-flex justify-content-center align-content-center">
                     <a href="../pages/view.html">
-                        <button type="button" class="btn btn-warning mt-2 " onclick="updateStudent()">Update Student</button>
+                        <button type="button" class="btn btn-warning mt-2 " onclick="updateStudent()">Update
+                            Student</button>
                     </a>
                 </div>
         </fieldset>

@@ -7,7 +7,8 @@ function clearFeilds() {
     document.getElementById('guardianContact').value = '';
 }
 
-function saveDate() {
+function saveData() {
+
     var studentName = document.getElementById('studentName').value;
     var studentAge = document.getElementById('studentAge').value;
     var studentContact = document.getElementById('studentContact').value;
@@ -24,19 +25,22 @@ function saveDate() {
         "gudContact": guardianContact
     }
 
-    fetch("http://localhost:9080/save-student",
-        {
-            method: 'post',
-            body: JSON.stringify(requestBody),
-            headers: {
-                'Content-Type': 'application/json'
+    if(confirm("Are you sure you want to save this details ?")){
+        fetch("http://localhost:8080/save-student",
+            {
+                method: 'post',
+                body: JSON.stringify(requestBody),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
-        }
-    ).then(response => response.json())
-        .then(data => {
-            console.log(data);
-            alert("Student saved successfully");
-            clearFeilds();
+        ).then(response => response.json())
+            .then(data => {
+                alert("Student saved successfully");
+                clearFeilds();
+    
+            })
+    }
 
-        })
+    
 }

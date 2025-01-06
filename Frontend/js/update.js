@@ -1,4 +1,4 @@
-function populateFormFromLocalStorage() {
+function setStudentDetails() {
     const student = JSON.parse(localStorage.getItem('studentDetails'));
 
     if (student) {
@@ -12,7 +12,7 @@ function populateFormFromLocalStorage() {
 }
 
 window.onload = function () {
-    populateFormFromLocalStorage();
+    setStudentDetails();
 };
 
 function updateStudent() {
@@ -26,17 +26,19 @@ function updateStudent() {
         gudContact: document.getElementById('guardianContact').value
     };
 
-    fetch(`http://localhost:9080/update-student/${studentObj.stdId}`,
-        {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedStudent)
-        }).then(res => res.json())
-        .then(data => {
-            console.log(data);
-            alert('Student details updated successfully');
-        })
+    if (confirm("Are you sure you want to update details ?")) {
+        fetch(`http://localhost:8080/update-student/${studentObj.stdId}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedStudent)
+            }).then(res => res.json())
+            .then(data => {
+                alert('Student details updated successfully');
+            })
+    }
+
 }
 

@@ -1,8 +1,7 @@
 function getAll() {
-    fetch("http://localhost:9080/get-all")
+    fetch("http://localhost:8080/get-all")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             let studentTable = document.getElementById('studentTableBody');
             studentTable.innerHTML = '';
             data.forEach(student => {
@@ -28,7 +27,6 @@ function getAll() {
                 deleteButton.className = 'btn btn-danger';
                 deleteButton.onclick = function () {
                     deleteStudent(student.stdId);
-                    alert('Student deleted successfully');
                     location.reload();
 
                 }
@@ -40,16 +38,19 @@ function getAll() {
 }
 
 function deleteStudent(studentId) {
-    fetch(`http://localhost:9080/delete-student/${studentId}`,
-        {
-            method: 'DELETE'
-        }
-    )
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            getAll();
-        });
+    if (confirm("Are you sure You want to delete ?")) {
+        fetch(`http://localhost:8080/delete-student/${studentId}`,
+            {
+                method: 'DELETE'
+            }
+        )
+            .then(response => response.json())
+            .then(data => {
+                alert('Student deleted successfully');
+                getAll();
+            });
+    }
+
 }
 
 window.onload = function () {
